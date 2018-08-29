@@ -3,8 +3,9 @@
 Custom Nova field to render tabs
 
 
-![Edit](http://take.ms/n4rEi)
-![Detail](http://take.ms/v1zot)
+![Edit](http://take.ms/MFDjX)
+![Detail](http://take.ms/44q7f)
+![Validation](http://take.ms/S6hZI)
 
 ## Installation
 
