@@ -3,8 +3,8 @@
 Custom Nova field to render tabs
 
 
-![Detail](https://raw.githubusercontent.com/chaseconey/nova-external-image/master/screenshots/index-ss.png)
-![Edit](https://raw.githubusercontent.com/chaseconey/nova-external-image/master/screenshots/detail-ss.png)
+![Edit](http://take.ms/n4rEi)
+![Detail](http://take.ms/v1zot)
 
 ## Installation
 
