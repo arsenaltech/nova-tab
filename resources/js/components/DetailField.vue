@@ -22,7 +22,7 @@
 
   export default {
 
-    props: ['fields', 'field'],
+    props: ['fields', 'field', 'resourceName', 'resourceId', 'resource'],
     computed: {
       /**
        * Get the available field panels.
