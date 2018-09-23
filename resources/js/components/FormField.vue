@@ -88,7 +88,6 @@
        * Fill the given FormData object with the field's internal value.
        */
       fill(formData) {
-        console.log(this.fields)
         _.each(this.field.fields, field => {
           field.fill(formData)
         })
