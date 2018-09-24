@@ -1,7 +1,7 @@
-# Laravel Nova Tab
+# Laravel Nova Tab [![Total Downloads](https://poser.pugx.org/arsenaltech/nova-tab/downloads)](https://packagist.org/packages/arsenaltech/nova-tab)
+
 
 Custom Nova field to render tabs
-[![Total Downloads](https://poser.pugx.org/arsenaltech/nova-tab/downloads)](https://packagist.org/packages/arsenaltech/nova-tab)
 
 ![Edit](http://take.ms/MFDjX)
 ![Detail](http://take.ms/44q7f)
