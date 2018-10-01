@@ -36,13 +36,14 @@ class NovaTab extends MergeValue implements \JsonSerializable
      *
      * @param  string  $name
      * @param  \Closure|array  $fields
+     * @param  string  $html
      * @return void
      */
-    public function __construct($name, $fields = [])
+    public function __construct($name, $fields = [], $html = null)
     {
         $this->name = $name;
 
-        parent::__construct($this->prepareFields($fields));
+        parent::__construct($this->prepareFields($fields, $html));
     }
 
     /**
@@ -61,17 +62,19 @@ class NovaTab extends MergeValue implements \JsonSerializable
         ];
     }
 
+
     /**
      * Prepare the given fields.
      *
      * @param  \Closure|array  $fields
      * @return array
      */
-    protected function prepareFields($fields)
+    protected function prepareFields($fields, $html)
     {
-        return collect(is_callable($fields) ? $fields() : $fields)->each(function ($field) {
+        return collect(is_callable($fields) ? $fields() : $fields)
+            ->each(function ($field) use($html) {
             if($field instanceof Field) {
-                $field->withMeta(['tab' => $this->name]);
+                $field->withMeta(['tab' => $this->name, 'tabHTML' => $html]);
             }
         })->all();
     }

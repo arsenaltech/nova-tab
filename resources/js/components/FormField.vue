@@ -41,13 +41,13 @@
 
         this.field.fields.forEach(field => {
           if (tabs[field.tab]) {
-            tabs[field.tab].fields.push(field)
+            tabs[field.tab.name].fields.push(field)
           }
           else {
-            tabs[field.tab] = this.createTabForField(field)
+            tabs[field.tab.name] = this.createTabForField(field)
           }
           if(this.errors.errors[field.attribute] )  {
-            tabs[field.tab].error = true
+            tabs[field.tab.name].error = true
           }
         })
 
@@ -60,17 +60,18 @@
       createTabForField(field) {
         return {
           fields: [field],
-          name: field.tab,
-          id: 'tab-'+field.tab,
+          name: field.tab.name,
+          id: 'tab-'+field.tab.name,
+          html: field.tab.html,
           error: false,
           hash() {
             return this.name.toLowerCase().replace(/ /g, '-')
           },
           formattedName() {
               if(this.error) {
-                return '<span class="text-danger bounce">'+this.name+'</span>'
+                return '<span class="text-danger bounce">'+this.html+'</span>'
               }
-              return this.name
+              return this.html
             }
         }
       },

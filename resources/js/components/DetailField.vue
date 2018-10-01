@@ -1,7 +1,7 @@
 <template>
     <tabs >
 
-        <tab :name="tab.name" v-for="tab in availableTabs" :key="tab.id" >
+        <tab :id="tab.name" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
             <component
               :class="{'remove-bottom-border': index == tab.fields.length - 1}"
               :key="index"
@@ -34,10 +34,10 @@
 
           fields.forEach(field => {
             if (tabs[field.tab]) {
-            return tabs[field.tab].fields.push(field)
+            return tabs[field.tab.name].fields.push(field)
           }
 
-          tabs[field.tab] = this.createTabForField(field)
+          tabs[field.tab.name] = this.createTabForField(field)
         })
 
           return _.toArray(tabs)
@@ -46,7 +46,7 @@
     methods: {
 
       createTabForField(field) {
-        return {fields: [field], name: field.tab, id: 'tab-'+field.tab}
+        return {fields: [field], name: field.tab.name, id: 'tab-'+field.tab.name, html: field.tab.html}
       },
       resolveComponentName(field) {
         return field.prefixComponent ? 'detail-' + field.component : field.component

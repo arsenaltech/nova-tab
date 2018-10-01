@@ -64,7 +64,8 @@ abstract class Resource extends NovaResource
                 $fields = $fields->all();
             }
             $this->assignFieldsToTabs($request, $fields);
-            return collect([(NovaTabs::make('tabs'))->withMeta(['fields'=> array_values($fields)])]);
+            return collect([(NovaTabs::make('tabs'))
+                ->withMeta(['fields'=> array_values($fields)])]);
         }
         return $fields;
 
@@ -75,7 +76,11 @@ abstract class Resource extends NovaResource
     protected function assignFieldsToTabs(NovaRequest $request, $fields)
     {
         foreach ($fields as $field) {
-            $field->meta['tab'] = $field->meta['tab'] ?? Panel::defaultNameFor($request->newResource());
+            $name = $field->meta['tab'] ?? Panel::defaultNameFor($request->newResource());
+            $field->meta['tab'] = [
+                'name'=> $name,
+                'html' => $field->meta['tabHTML'] ?? $name
+            ];
         }
 
         return $fields;
