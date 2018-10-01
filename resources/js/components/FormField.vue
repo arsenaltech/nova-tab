@@ -28,7 +28,7 @@
   import { FormField, HandlesValidationErrors, InteractsWithResourceInformation } from 'laravel-nova'
   export default {
     mixins: [FormField, HandlesValidationErrors, InteractsWithResourceInformation],
-    props: ['field', 'resourceId', 'resourceName', 'errors', 'viaResource', 'viaRelationship'],
+    props: ['field', 'resourceId', 'resourceName', 'errors', 'viaResource', 'viaRelationship', 'viaResourceId'],
     data: () => ({
       fields: [],
     }),
