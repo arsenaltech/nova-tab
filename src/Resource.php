@@ -64,8 +64,10 @@ abstract class Resource extends NovaResource
                 $fields = $fields->all();
             }
             $this->assignFieldsToTabs($request, $fields);
-            return collect([(NovaTabs::make('tabs'))
-                ->withMeta(['fields'=> array_values($fields)])]);
+            return collect([
+                (NovaTabs::make('tabs'))
+                    ->withMeta(['fields'=> array_values($fields)])
+            ]);
         }
         return $fields;
 

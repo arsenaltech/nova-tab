@@ -33,7 +33,7 @@
           var fields = _.toArray(JSON.parse(JSON.stringify(this.field.fields)))
 
           fields.forEach(field => {
-            if (tabs[field.tab]) {
+            if (tabs[field.tab.name]) {
             return tabs[field.tab.name].fields.push(field)
           }
 

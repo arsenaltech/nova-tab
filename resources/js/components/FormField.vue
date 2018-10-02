@@ -40,7 +40,7 @@
         var tabs = {}
 
         this.field.fields.forEach(field => {
-          if (tabs[field.tab]) {
+          if (tabs[field.tab.name]) {
             tabs[field.tab.name].fields.push(field)
           }
           else {
@@ -50,7 +50,6 @@
             tabs[field.tab.name].error = true
           }
         })
-
         return _.toArray(tabs)
 
 
