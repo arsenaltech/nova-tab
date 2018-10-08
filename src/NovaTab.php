@@ -5,6 +5,7 @@ namespace Arsenaltech\NovaTab;
 use Illuminate\Http\Resources\MergeValue;
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Panel;
+use Laravel\Nova\ResourceTool;
 
 class NovaTab extends MergeValue implements \JsonSerializable
 {
@@ -73,7 +74,7 @@ class NovaTab extends MergeValue implements \JsonSerializable
     {
         return collect(is_callable($fields) ? $fields() : $fields)
             ->each(function ($field) use($html) {
-            if($field instanceof Field) {
+            if($field instanceof Field || $field instanceof ResourceTool) {
                 $field->withMeta(['tab' => $this->name, 'tabHTML' => $html]);
             }
         })->all();
