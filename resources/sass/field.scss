@@ -1,18 +1,17 @@
-// Nova Tool CSS
 .tabs-component {
   margin: 1em 1.5em;
-
 }
 
 .px-6 .tabs-component {
-  margin-left: 0em;
-  margin-right: 0em;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .tabs-component-tabs {
   border: solid 1px #ddd;
   border-radius: 6px;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
+  padding-left: 0;
 }
 
 @media (min-width: 700px) {
@@ -29,25 +28,28 @@
   color: #999;
   font-size: 14px;
   font-weight: 600;
-  margin-right: 0;
   list-style: none;
-}
+  margin-right: -1px;
 
-.tabs-component-tab:not(:last-child) {
-  border-bottom: dotted 1px #ddd;
-}
+  @media (max-width: 700px) {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    font-size: 1em;
+  }
 
-.tabs-component-tab:hover {
-  color: #666;
-}
+  &.is-active {
+    color: #000;
+    box-shadow: 5px 3px 7px -7px rgba(0, 0, 0, 0.2);
+  }
 
-.tabs-component-tab.is-active {
-  color: #000;
-}
+  &:hover {
+    color: #666;
+  }
 
-.tabs-component-tab.is-disabled * {
-  color: #cdcdcd;
-  cursor: not-allowed !important;
+  &.is-disabled * {
+    color: #cdcdcd;
+    cursor: not-allowed !important;
+  }
 }
 
 @media (min-width: 700px) {
@@ -55,14 +57,12 @@
     background-color: #fff;
     border: solid 1px #ddd;
     border-radius: 3px 3px 0 0;
-    margin-right: .5em;
     transition: transform .3s ease;
   }
 
   .tabs-component-tab.is-active {
     border-bottom: solid 1px #fff;
     z-index: 2;
-    transform: translateY(0);
   }
 }
 
@@ -75,17 +75,25 @@
 }
 
 .tabs-component-panels {
-  padding: 4em 0;
-}
+  padding: 1em 2em;
+  background-color: #fff;
+  border: solid 1px #ddd;
+  border-radius: 0 6px 6px 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .05);
 
-@media (min-width: 700px) {
-  .tabs-component-panels {
-    border-top-left-radius: 0;
-    background-color: #fff;
-    border: solid 1px #ddd;
-    border-radius: 0 6px 6px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .05);
-    padding: 4em 2em;
+  h1 {
+    margin: 1em 0;
+    border-bottom: 1px solid #F2F2F2;
+    padding-bottom: .5em;
+  }
+
+  .w-search {
+    border: 1px solid #E3E3E3;
+  }
+
+  .card.relative {
+    border: 1px solid #E6D8CB;
+    margin-bottom: 1.3em;
   }
 }
 
@@ -94,6 +102,7 @@
   40% {transform: translateY(-10px);}
   60% {transform: translateY(-15px);}
 }
+
 .bounce {
   animation-name: bounce;
   animation-duration: 1.5s;
