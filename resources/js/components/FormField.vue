@@ -1,8 +1,8 @@
 <template>
 
-    <tabs >
+    <tabs>
         <span v-for="tab in availableTabs" :class="{'text-danger': tab.error}">
-            <tab :id="tab.hash()" :name="tab.formattedName()"  :key="tab.id" :isError="tab.error">
+            <tab :id="tab.hash()" :name="tab.formattedName()" :key="tab.id" :isError="tab.error">
                 <component
                   :class="{'remove-bottom-border': index == tab.fields.length - 1}"
                   :key="index"
@@ -64,7 +64,7 @@
           html: field.tab.html,
           error: false,
           hash() {
-            return this.name.toLowerCase().replace(/ /g, '-')
+            return this.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')
           },
           formattedName() {
               if(this.error) {
