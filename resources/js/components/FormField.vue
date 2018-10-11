@@ -2,7 +2,7 @@
 
     <tabs >
         <span v-for="tab in availableTabs" :class="{'text-danger': tab.error}">
-            <tab :id="tab.hash()" :dusk="tab.hash()" :name="tab.formattedName()"  :key="tab.id" :isError="tab.error">
+            <tab :id="tab.hash()" :dusk="tab.hash()" :name="tab.formattedName()" :key="tab.id" :isError="tab.error">
                 <component
                   :class="{'remove-bottom-border': index == tab.fields.length - 1}"
                   :key="index"
@@ -61,6 +61,7 @@
           fields: [field],
           name: field.tab.name,
           id: 'tab-'+field.tab.name,
+          dusk: 'tab-'+field.tab.name,
           html: field.tab.html,
           error: false,
           hash() {
