@@ -7,7 +7,6 @@
                   :class="{'remove-bottom-border': index == tab.fields.length - 1}"
                   :key="index"
                   v-for="(field, index) in tab.fields"
-                  :dusk="field"
                   :is="resolveComponentName(field)"
                   :resource-name="resourceName"
                   :resource-id="resourceId"

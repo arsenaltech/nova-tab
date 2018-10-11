@@ -1,7 +1,7 @@
 <template>
     <tabs >
 
-        <tab :id="tab.name" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
+        <tab :id="hash" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
             <component
               :class="{'remove-bottom-border': index == tab.fields.length - 1}"
               :key="index"
@@ -43,6 +43,9 @@
           return _.toArray(tabs)
 
       }},
+      hash() {
+        return tab.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')
+      },
     methods: {
 
       createTabForField(field) {
