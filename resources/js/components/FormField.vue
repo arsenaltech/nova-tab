@@ -16,6 +16,7 @@
                   :via-resource="viaResource"
                   :via-resource-id="viaResourceId"
                   :via-relationship="viaRelationship"
+                  :dusk="tab.hash()"
                   @file-deleted="file-deleted"
                 />
             </tab>
@@ -64,7 +65,7 @@
           html: field.tab.html,
           error: false,
           hash() {
-            return this.name.toLowerCase().replace(/ /g, '-')
+            return this.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')
           },
           formattedName() {
               if(this.error) {
