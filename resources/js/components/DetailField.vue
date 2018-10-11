@@ -1,7 +1,7 @@
 <template>
     <tabs >
 
-        <tab :id="hash" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
+        <tab :id="tab.name | hash" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
             <component
               :class="{'remove-bottom-border': index == tab.fields.length - 1}"
               :key="index"
@@ -23,6 +23,11 @@
   export default {
 
     props: ['fields', 'field', 'resourceName', 'resourceId', 'resource'],
+    filters: {
+      hash: function (value) {
+        return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')
+      }
+    },
     computed: {
       /**
        * Get the available field panels.
@@ -43,9 +48,6 @@
           return _.toArray(tabs)
 
       }},
-      hash() {
-        return this.tab.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')
-      },
     methods: {
 
       createTabForField(field) {
