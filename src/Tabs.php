@@ -7,10 +7,8 @@ use Laravel\Nova\Panel;
 use Laravel\Nova\Resource as NovaResource;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-abstract class Resource extends NovaResource
+trait Tabs
 {
-
-
     public function updateFields(NovaRequest $request) {
         $updateFields = parent::updateFields($request);
         if(!$request->isMethod('get')) {
@@ -87,5 +85,4 @@ abstract class Resource extends NovaResource
 
         return $fields;
     }
-
 }
