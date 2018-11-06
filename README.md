@@ -17,12 +17,14 @@ composer require arsenaltech/nova-tab
 
 ## Usage
 
-Extend App\Nova\Resource from Arsenaltech\NovaTab\Resource
+Add the Tabs trait to your App\Nova\Resource class.
 
 ```php
-use Arsenaltech\NovaTab\Resource as TabResource;
+use Arsenaltech\NovaTab\Tabs;
 
-abstract class Resource extends TabResource
+abstract class Resource extends NovaResource
+{
+    use Tabs;
 ```
 
 Add the field to your resource in the `fields` method:
