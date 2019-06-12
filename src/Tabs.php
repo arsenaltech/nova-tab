@@ -1,6 +1,6 @@
 <?php
 
-namespace Arsenaltech\NovaTab;
+namespace R64\NovaTab;
 
 use Laravel\Nova\Panel;
 use Illuminate\Support\Collection;
