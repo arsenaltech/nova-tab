@@ -1,6 +1,6 @@
 <template>
 
-    <tabs>
+    <tabs :options="{ useUrlFragment: false }">
         <span v-for="tab in availableTabs" :class="{'text-danger': tab.error}">
             <tab :id="tab.hash()" :name="tab.formattedName()" :key="tab.id" :isError="tab.error">
                 <component

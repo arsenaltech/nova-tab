@@ -1,5 +1,5 @@
 <template>
-    <tabs >
+    <tabs :options="{ useUrlFragment: false }">
 
         <tab :id="tab.name | hash" :name="tab.html" v-for="tab in availableTabs" :key="tab.id" >
             <component
