@@ -2,16 +2,16 @@
 
 namespace Arsenaltech\NovaTab;
 
-use Illuminate\Support\Collection;
 use Laravel\Nova\Panel;
-use Laravel\Nova\Resource as NovaResource;
+use Illuminate\Support\Collection;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 trait Tabs
 {
-    public function updateFields(NovaRequest $request) {
+    public function updateFields(NovaRequest $request)
+    {
         $updateFields = parent::updateFields($request);
-        if(!$request->isMethod('get')) {
+        if (!$request->isMethod('get')) {
             return $updateFields;
         }
         $updateFields = $this->availableTabs($request, $updateFields);
@@ -40,7 +40,7 @@ trait Tabs
     public function creationFields(NovaRequest $request)
     {
         $creationFields = parent::creationFields($request);
-        if(!$request->isMethod('get')) {
+        if (!$request->isMethod('get')) {
             return $creationFields;
         }
         return $this->availableTabs($request, $creationFields);
@@ -57,29 +57,27 @@ trait Tabs
 
         $tabs = collect(array_values($this->fields($request)))
             ->whereInstanceOf(NovaTab::class)->values();
-        if(count($tabs) > 0) {
-            if($fields instanceof Collection) {
+        if (count($tabs) > 0) {
+            if ($fields instanceof Collection) {
                 $fields = $fields->all();
             }
             $this->assignFieldsToTabs($request, $fields);
             return collect([
                 (NovaTabs::make('tabs'))
-                    ->withMeta(['fields'=> array_values($fields)])
+                    ->withMeta(['fields' => array_values($fields)])
             ]);
         }
         return $fields;
-
-
     }
-
 
     protected function assignFieldsToTabs(NovaRequest $request, $fields)
     {
         foreach ($fields as $field) {
             $name = $field->meta['tab'] ?? Panel::defaultNameFor($request->newResource());
             $field->meta['tab'] = [
-                'name'=> $name,
-                'html' => $field->meta['tabHTML'] ?? $name
+                'name' => $name,
+                'html' => $field->meta['tabHTML'] ?? $name,
+                'error' => $field->meta['hasError']
             ];
         }
 
