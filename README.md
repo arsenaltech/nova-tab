@@ -3,10 +3,6 @@
 
 Custom Nova field to render tabs
 
-![Edit](http://take.ms/MFDjX)
-![Detail](http://take.ms/44q7f)
-![Validation](http://take.ms/S6hZI)
-
 ## Installation
 
 Install the package into a Laravel app that uses [Nova](https://nova.laravel.com) with Composer:
