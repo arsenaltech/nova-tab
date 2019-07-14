@@ -1,11 +1,10 @@
 <?php
 
-namespace Arsenaltech\NovaTab;
+namespace R64\NovaTab;
 
-use Illuminate\Http\Resources\MergeValue;
 use Laravel\Nova\Fields\Field;
-use Laravel\Nova\Panel;
 use Laravel\Nova\ResourceTool;
+use Illuminate\Http\Resources\MergeValue;
 
 class NovaTab extends MergeValue implements \JsonSerializable
 {
@@ -30,6 +29,13 @@ class NovaTab extends MergeValue implements \JsonSerializable
      */
     public $data;
 
+    /**
+     * The callback for determine if the tab should show a warning on created.
+     *
+     * @var array
+     */
+    public $hasErrorCallback;
+
     public $panel;
 
     /**
@@ -40,9 +46,10 @@ class NovaTab extends MergeValue implements \JsonSerializable
      * @param  string  $html
      * @return void
      */
-    public function __construct($name, $fields = [], $html = null)
+    public function __construct($name, $fields = [], $html = null, $errorCallback = null)
     {
         $this->name = $name;
+        $this->hasErrorCallback = $errorCallback;
 
         parent::__construct($this->prepareFields($fields, $html));
     }
@@ -63,7 +70,6 @@ class NovaTab extends MergeValue implements \JsonSerializable
         ];
     }
 
-
     /**
      * Prepare the given fields.
      *
@@ -72,11 +78,17 @@ class NovaTab extends MergeValue implements \JsonSerializable
      */
     protected function prepareFields($fields, $html)
     {
+        $hasError = $this->hasErrorCallback ? call_user_func($this->hasErrorCallback) : false;
+
         return collect(is_callable($fields) ? $fields() : $fields)
-            ->each(function ($field) use($html) {
-            if($field instanceof Field || $field instanceof ResourceTool) {
-                $field->withMeta(['tab' => $this->name, 'tabHTML' => $html]);
-            }
-        })->all();
+            ->each(function ($field) use ($html, $hasError) {
+                if ($field instanceof Field || $field instanceof ResourceTool) {
+                    $field->withMeta([
+                        'tab' => $this->name,
+                        'tabHTML' => $html,
+                        'hasError' => $hasError,
+                    ]);
+                }
+            })->all();
     }
 }

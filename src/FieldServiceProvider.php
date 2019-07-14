@@ -1,6 +1,6 @@
 <?php
 
-namespace Arsenaltech\NovaTab;
+namespace R64\NovaTab;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
@@ -16,8 +16,8 @@ class FieldServiceProvider extends ServiceProvider
     public function boot()
     {
         Nova::serving(function (ServingNova $event) {
-            Nova::script('nova-tabs', __DIR__.'/../dist/js/field.js');
-            Nova::style('nova-tabs', __DIR__.'/../dist/css/field.css');
+            Nova::script('nova-tabs', __DIR__ . '/../dist/js/field.js');
+            Nova::style('nova-tabs', __DIR__ . '/../dist/css/field.css');
         });
     }
 

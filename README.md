@@ -1,5 +1,4 @@
-# Laravel Nova Tab [![Total Downloads](https://poser.pugx.org/arsenaltech/nova-tab/downloads)](https://packagist.org/packages/arsenaltech/nova-tab)
-
+# Laravel Nova Tab
 
 Custom Nova field to render tabs
 
@@ -8,7 +7,7 @@ Custom Nova field to render tabs
 Install the package into a Laravel app that uses [Nova](https://nova.laravel.com) with Composer:
 
 ```bash
-composer require arsenaltech/nova-tab
+composer require 64robots/nova-tab
 ```
 
 ## Usage
@@ -16,7 +15,7 @@ composer require arsenaltech/nova-tab
 Add the Tabs trait to your App\Nova\Resource class.
 
 ```php
-use Arsenaltech\NovaTab\Tabs;
+use R64\NovaTab\Tabs;
 
 abstract class Resource extends NovaResource
 {
@@ -26,7 +25,7 @@ abstract class Resource extends NovaResource
 Add the field to your resource in the `fields` method:
 
 ```php
-use Arsenaltech\NovaTab\NovaTab;
+use R64\NovaTab\NovaTab;
 
 
 new NovaTab('User Information', [
@@ -43,5 +42,3 @@ new NovaTab('Other Information', $this->otherFields()),
 
 
 ```
-
-

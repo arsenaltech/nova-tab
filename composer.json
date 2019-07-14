@@ -1,29 +1,29 @@
 {
-    "name": "arsenaltech/nova-tab",
-    "description": "A Laravel Nova field.",
-    "keywords": [
-        "laravel",
-        "nova"
-    ],
-    "license": "MIT",
-    "require": {
-        "php": ">=7.1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Arsenaltech\\NovaTab\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Arsenaltech\\NovaTab\\FieldServiceProvider"
-            ]
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "64robots/nova-tab",
+  "description": "A Laravel Nova field.",
+  "keywords": [
+    "laravel",
+    "nova"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "R64\\NovaTab\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "R64\\NovaTab\\FieldServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
