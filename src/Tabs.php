@@ -76,7 +76,7 @@ trait Tabs
     protected function assignFieldsToTabs(NovaRequest $request, $fields)
     {
         foreach ($fields as $field) {
-            $name = $field->meta['tab'] ?? Panel::defaultNameFor($request->newResource());
+            $name = $field->meta['tab'] ?? Panel::defaultNameForCreate($request->newResource());
             $field->meta['tab'] = [
                 'name'=> $name,
                 'html' => $field->meta['tabHTML'] ?? $name
@@ -84,5 +84,22 @@ trait Tabs
         }
 
         return $fields;
+    }
+
+   /**
+    * Assign the fields with the given panels to their parent panel.
+    *
+    * @param  string                           $label
+    * @param  \Illuminate\Support\Collection   $panels
+    * @return \Illuminate\Support\Collection
+    */
+    protected function assignToPanels($label, Collection $panels)
+    {
+        return $panels->map(function ($field) use ($label) {
+            if ( !is_array($field) && !$field->panel ) {
+                 $field->panel = $label;
+            }
+            return $field;
+        });
     }
 }
