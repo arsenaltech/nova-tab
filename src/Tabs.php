@@ -3,12 +3,18 @@
 namespace Arsenaltech\NovaTab;
 
 use Illuminate\Support\Collection;
-use Laravel\Nova\Panel;
-use Laravel\Nova\Resource as NovaResource;
+use Laravel\Nova\Fields\FieldCollection;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Panel;
 
 trait Tabs
 {
+    /**
+     * Resolve the update fields.
+     *
+     * @param NovaRequest $request
+     * @return Collection|FieldCollection
+     */
     public function updateFields(NovaRequest $request) {
         $updateFields = parent::updateFields($request);
         if(!$request->isMethod('get')) {
@@ -21,7 +27,7 @@ trait Tabs
     /**
      * Prepare the resource for JSON serialization.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function serializeForDetail(NovaRequest $request)
@@ -34,8 +40,8 @@ trait Tabs
     /**
      * Resolve the creation fields.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @return \Illuminate\Support\Collection
+     * @param NovaRequest $request
+     * @return Collection
      */
     public function creationFields(NovaRequest $request)
     {
@@ -49,8 +55,9 @@ trait Tabs
     /**
      * Get the panels that are available for the given request.
      *
-     * @param  \Laravel\Nova\Http\Requests\ResourceDetailRequest  $request
-     * @return \Illuminate\Support\Collection
+     * @param NovaRequest $request
+     * @param $fields
+     * @return Collection
      */
     public function availableTabs(NovaRequest $request, $fields)
     {
@@ -62,7 +69,7 @@ trait Tabs
                 $fields = $fields->all();
             }
             $this->assignFieldsToTabs($request, $fields);
-            return collect([
+            return new FieldCollection([
                 (NovaTabs::make('tabs'))
                     ->withMeta(['fields'=> array_values($fields)])
             ]);
@@ -72,7 +79,13 @@ trait Tabs
 
     }
 
-
+    /**
+     * Assign fields to tabs
+     *
+     * @param NovaRequest $request
+     * @param $fields
+     * @return mixed
+     */
     protected function assignFieldsToTabs(NovaRequest $request, $fields)
     {
         foreach ($fields as $field) {
@@ -84,22 +97,5 @@ trait Tabs
         }
 
         return $fields;
-    }
-
-   /**
-    * Assign the fields with the given panels to their parent panel.
-    *
-    * @param  string                           $label
-    * @param  \Illuminate\Support\Collection   $panels
-    * @return \Illuminate\Support\Collection
-    */
-    protected function assignToPanels($label, Collection $panels)
-    {
-        return $panels->map(function ($field) use ($label) {
-            if ( !is_array($field) && !$field->panel ) {
-                 $field->panel = $label;
-            }
-            return $field;
-        });
     }
 }
